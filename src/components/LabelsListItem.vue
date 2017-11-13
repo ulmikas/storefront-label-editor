@@ -1,6 +1,6 @@
 <template>
   <div v-bind:class="['labels-list-item', isEmpty ? 'labels-list-item--empty' : '', isDisabled ? '' : 'labels-list-item--changed', this.lang == 'ru' ? 'ru' : '' ]">
-    <label class="labels-list-item__key" :for="`${lang}:${labelKey}`">{{ labelKey }}:</label>
+    <label class="labels-list-item__key" :for="`${lang}:${labelKey}`" v-html="getLabelName(labelKey)"></label>
     <div class="labels-list-item__input" :data-save="texts['saved']">
       <input :readonly="!editable" class="form-control input-medium" :id="`${lang}:${labelKey}`" :value="labelValue" @change="addLabel" v-on:keyup="debounceAddLabel" />
     </div>
@@ -36,6 +36,9 @@ export default {
     revertLabel(key) {
       this.$emit('revert-label', key);
     },
+    getLabelName(name) {
+      return name.replace('.', '<span class="labels-list-item__dot">.</span>');
+    },
   },
   computed: {
     isEmpty() {
@@ -63,7 +66,6 @@ export default {
   flex-basis: 100%;
   margin-bottom: 4px;
 }
-
 .labels-list-item__input {
   flex: 1;
   font-size: 14px;
@@ -143,4 +145,9 @@ export default {
     margin-left: 20px;
   }
 }
+</style>
+<style>
+  .labels-list-item__dot {
+    display: inline-block;
+  }
 </style>
