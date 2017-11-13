@@ -94,7 +94,7 @@ export default {
 .app-container {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 24px 60px;
 }
 
 .sle-add-label-btn {

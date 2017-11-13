@@ -22,14 +22,19 @@
         </div>
       </div>
   
-      <div v-if="value.length > 1">
+      <div v-if="value.length > 1 || showalllabels">
         <div v-if="isEmpty()" class="nothing">
           <div class="nothing__image">
             <img src="../assets/nothing.png" alt="Nothing is found" />
           </div>
           <div class="nothing__title">{{ texts.notFound.title }}</div>
           <div class="nothing__text">{{ texts.notFound.text.replace('[searchquery]', value) }}</div>
-          <a href="" @click="clearSearch" class="nothing__link">{{ texts.notFound.link }}</a>
+          <div>
+            <a href="" @click="clearSearch" class="nothing__link">{{ texts.notFound.link }}</a>
+          </div>
+          <div>
+            <a href="" @click="showAll" class="nothing__link">{{ texts.notFound.linkAll }}</a>
+          </div>
         </div>
         <div v-else>
           <div class="search-result">
@@ -59,7 +64,7 @@ import SelectLang from './SelectLang';
 
 export default {
   name: 'search-results-screen',
-  props: ['texts', 'count', 'totalCount', 'usedLangs', 'shown', 'langs', 'lang', 'multilang', 'labels', 'defaultLabels', 'value'],
+  props: ['texts', 'count', 'totalCount', 'usedLangs', 'shown', 'langs', 'lang', 'multilang', 'labels', 'defaultLabels', 'value', 'showalllabels'],
   components: { LabelsList, SelectLang },
   data() {
     return {};
@@ -81,6 +86,10 @@ export default {
     updateValue(value) {
       this.$emit('query-change', value);
       this.$emit('input', value);
+    },
+    showAll(e) {
+      e.preventDefault();
+      this.$emit('show-all');
     },
     setLang(e) {
       this.$emit('set-lang', e);
@@ -151,7 +160,7 @@ export default {
 .app-container {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 24px 60px;
 }
 
 .search-wrapper {

@@ -14,6 +14,7 @@
           :langs="langs"
           :usedLangs="usedLangs"
           :multilang="multilang"
+          :showalllabels="showAllLabels"
           v-model.trim="query"
           @set-lang="setLang"
           @add-label="addLabel"
@@ -21,7 +22,8 @@
           @revert-label="revertLabel"
           @clear-search="clearSearch"
           @show-search="showSearch"
-          @query-change="queryChange" />
+          @query-change="queryChange"
+          @show-all="showAll" />
       </transition>
     <div class="loader"></div>
     <div class="multilang_switcher">
@@ -58,6 +60,7 @@ export default {
       curLang: this.lang,
       screenChanged: false,
       firstTime: true,
+      showAllLabels: false,
     };
   },
   created() {
@@ -85,10 +88,11 @@ export default {
   },
   methods: {
     queryChange() {
+      this.showAllLabels = false;
       this.recentlyChanged = {};
     },
     queryEnough() {
-      return this.query.length > 1;
+      return this.query.length > 1 || this.showAllLabels;
     },
     setLang(e) {
       this.$emit('set-lang', e);
@@ -189,6 +193,7 @@ export default {
     clearSearch() {
       this.recentlyChanged = {};
       this.query = '';
+      this.showAllLabels = false;
       this.curScreen = (this.totalCount || (this.multilang && Object.keys(this.stored).length))
         ? 'log-screen'
         : 'welcome-screen';
@@ -198,6 +203,10 @@ export default {
     },
     showSearch() {
       this.curScreen = 'search-results-screen';
+    },
+    showAll() {
+      this.query = '';
+      this.showAllLabels = true;
     },
   },
   computed: {
@@ -213,7 +222,10 @@ export default {
         : 0;
     },
     shownLabels() {
-      const obj = this.labels;
+      if (this.showAllLabels) {
+        return this.labels;
+      }
+      const obj = { ...this.labels };
       const isSubstring = string => string.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
       const isContains = key => (isSubstring(key) || isSubstring(obj[key]));
       const isRecent = key => Object.prototype.hasOwnProperty.call(this.recentlyChanged, key);
