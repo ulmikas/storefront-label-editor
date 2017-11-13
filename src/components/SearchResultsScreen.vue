@@ -46,7 +46,7 @@
             </div>
           </div>
   
-          <LabelsList key="searchedLabels" :editable="true" :lang="lang" :labels="labels" :texts="texts" :defaultLabels="defaultLabels" :count="count" :totalCount="totalCount" @add-label="addLabel" @revert-label="deleteLabel" @clear-search="clearSearch" />
+          <LabelsList key="searchedLabels" :editable="true" :lang="lang" :labels="labels" :texts="texts" :defaultLabels="defaultLabels" :count="count" :totalCount="totalCount" @add-label="addLabel" @revert-label="revertLabel" @clear-search="clearSearch" />
         </div>
       </div>
     </div>
@@ -79,6 +79,7 @@ export default {
       this.$emit('revert-label', key);
     },
     updateValue(value) {
+      this.$emit('query-change', value);
       this.$emit('input', value);
     },
     setLang(e) {

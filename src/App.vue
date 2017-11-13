@@ -20,7 +20,8 @@
           @delete-label="deleteLabel"
           @revert-label="revertLabel"
           @clear-search="clearSearch"
-          @show-search="showSearch" />
+          @show-search="showSearch"
+          @query-change="queryChange" />
       </transition>
     <div class="loader"></div>
     <div class="multilang_switcher">
@@ -83,6 +84,9 @@ export default {
     },
   },
   methods: {
+    queryChange() {
+      this.recentlyChanged = {};
+    },
     queryEnough() {
       return this.query.length > 1;
     },
@@ -210,11 +214,13 @@ export default {
     },
     shownLabels() {
       const obj = this.labels;
-      const isContains = key => (key.toLowerCase().indexOf(this.query.toLowerCase()) > -1
-                              || obj[key].toLowerCase().indexOf(this.query.toLowerCase()) > -1);
+      const isSubstring = string => string.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
+      const isContains = key => (isSubstring(key) || isSubstring(obj[key]));
+      const isRecent = key => Object.prototype.hasOwnProperty.call(this.recentlyChanged, key);
+
       return (this.queryEnough())
         ? Object.keys(obj).reduce((newObj, key) =>
-          ((isContains(key)) ? { ...newObj, [key]: obj[key] } : newObj), {})
+          ((isContains(key) || isRecent(key)) ? { ...newObj, [key]: obj[key] } : newObj), {})
         : {};
     },
     usedLangs() {
