@@ -17,6 +17,9 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 
+# build storefron js
+npm run buildSF
+
 # run unit tests
 npm run unit
 
