@@ -30,8 +30,8 @@ const translates = {
     notFound: {
       title: 'Nothing is found',
       text: 'Your search for "[searchquery]" did not match any labels.',
-      link: 'See the list of your custom labels',
-      linkAll: 'See all labels',
+      link: 'View your custom labels',
+      linkAll: 'View all labels',
     },
 
     searchResults: {
@@ -79,7 +79,7 @@ const translates = {
       title: 'Non è stato trovato nulla',
       text: 'La tua ricerca per "[searchquery]"" non ha trovato alcuna etichetta.',
       link: 'Guarda la lista delle tue etichette personalizzate',
-      linkAll: 'See all labels',
+      linkAll: 'View all labels',
     },
 
     searchResults: {
@@ -125,7 +125,7 @@ const translates = {
       title: 'Nenhum resultado',
       text: 'A sua pesquisa por "[searchquery]" não correspondeu a nenhum rótulo.',
       link: 'Veja a lista dos seus rótulos personalizados',
-      linkAll: 'See all labels',
+      linkAll: 'View all labels',
     },
 
     searchResults: {
@@ -171,7 +171,7 @@ const translates = {
       title: 'No se ha encontrado nada',
       text: 'Tu búsqueda de "[searchquery]" no ha encontrado ninguna etiqueta.',
       link: 'Mira la lista de tus etiquetas personalizadas',
-      linkAll: 'See all labels',
+      linkAll: 'View all labels',
     },
 
     searchResults: {
@@ -217,7 +217,7 @@ const translates = {
       title: 'Niets gevonden',
       text: 'U zoekopdracht "[searchquery]" kwam niet met labels overeen.',
       link: 'Bekijk de lijst met uw op maat gemaakte labels',
-      linkAll: 'See all labels',
+      linkAll: 'View all labels',
     },
 
     searchResults: {
@@ -264,7 +264,7 @@ const translates = {
       title: "Nous n'avons rien trouvé",
       text: 'Votre recherche de «[searchquery]» ne correspond à aucune étiquette.',
       link: 'Visualisez la liste de vos étiquettes personnalisées',
-      linkAll: 'See all labels',
+      linkAll: 'View all labels',
     },
 
     searchResults: {
@@ -310,7 +310,7 @@ const translates = {
       title: 'Nichts gefunden',
       text: 'Deine Suche für "[searchquery]" ergab keine passenden Labels.',
       link: 'Liste deiner individuellen Labels ansehen',
-      linkAll: 'See all labels',
+      linkAll: 'View all labels',
     },
 
     searchResults: {
