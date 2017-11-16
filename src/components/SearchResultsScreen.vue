@@ -29,12 +29,8 @@
           </div>
           <div class="nothing__title">{{ texts.notFound.title }}</div>
           <div class="nothing__text">{{ texts.notFound.text.replace('[searchquery]', value) }}</div>
-          <div>
-            <a href="" @click="clearSearch" class="nothing__link">{{ texts.notFound.link }}</a>
-          </div>
-          <div>
-            <a href="" @click="showAll" class="nothing__link">{{ texts.notFound.linkAll }}</a>
-          </div>
+          <a href="" @click="clearSearch" class="nothing__link">{{ texts.notFound.link }}</a>
+          <a href="" @click="showAll" class="nothing__link">{{ texts.notFound.linkAll }}</a>
         </div>
         <div v-else>
           <div class="search-result">
@@ -204,8 +200,10 @@ export default {
 }
 
 .nothing__link {
+  display: block;
   font-size: 14px;
   line-height: 22px;
+  margin-bottom: 8px;
   text-decoration: none;
 }
 
