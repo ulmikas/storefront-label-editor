@@ -15,7 +15,7 @@
           :usedLangs="usedLangs"
           :multilang="multilang"
           :showalllabels="showAllLabels"
-          v-model.trim="query"
+          v-model="query"
           @set-lang="setLang"
           @add-label="addLabel"
           @delete-label="deleteLabel"

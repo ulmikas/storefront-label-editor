@@ -84,8 +84,9 @@ export default {
       this.$emit('revert-label', key);
     },
     updateValue(value) {
-      this.$emit('query-change', value);
-      this.$emit('input', value);
+      const newValue = value.replace(/^\s\s*/, '');
+      this.$emit('query-change', newValue);
+      this.$emit('input', newValue);
     },
     showAll(e) {
       e.preventDefault();
